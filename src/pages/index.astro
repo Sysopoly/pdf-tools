@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { PdfWorkspace } from '../components/PdfWorkspace';
+---
+
+<Layout title="PDF Editor">
+  <div class="mb-8 text-center max-w-2xl mx-auto mt-8">
+    <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl mb-4">
+      Secure, Fast <span class="text-blue-600">PDF Tools</span>
+    </h1>
+    <p class="text-lg text-gray-600">
+      Reorder, delete, and merge PDF pages directly in your browser. 
+      Basic editing is <strong>100% offline</strong>. Advanced deep compression utilizes secure temporary processing. 
+    </p>
+  </div>
+
+  <div class="bg-white rounded-xl shadow-xl shadow-blue-900/5 border border-gray-200 overflow-hidden min-h-[500px] flex flex-col mb-12">
+    <PdfWorkspace client:only="react" />
+  </div>
+</Layout>
