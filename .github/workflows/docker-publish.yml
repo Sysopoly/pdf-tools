@@ -65,10 +65,10 @@ jobs:
           cache-from: type=gha,scope=backend
           cache-to: type=gha,mode=max,scope=backend
 
-      - name: Notify Deploy Webhook
+      - name: Notify Uptime Kuma
         uses: Sysopoly/github-actions/notify-kuma@master
         continue-on-error: true
         with:
-          webhook_url: ${{ secrets.DEPLOY_WEBHOOK_URL }}
-          service_name: "Sysopoly PDF Tools"
+          push-token: ${{ secrets.KUMA_PUSH_TOKEN }}
+          msg: "Build OK"
 
