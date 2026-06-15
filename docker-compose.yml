@@ -1,13 +1,21 @@
-version: '3.8'
-
 services:
+  pdf-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - pdf-backend
+    restart: unless-stopped
+
   pdf-backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
     environment:
       - PORT=8080
       - GIN_MODE=release
     restart: unless-stopped
+    tmpfs:
+      - /tmp

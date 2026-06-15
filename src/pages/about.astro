@@ -12,7 +12,7 @@ import Layout from '../layouts/Layout.astro';
       <h3 class="text-blue-800 font-bold mb-2 text-xl mt-0">A Promise of Privacy</h3>
       <p class="text-blue-900 mb-0">
         Your privacy is our priority. <strong>By default, no files ever touch our servers.</strong> 
-        Merging, reordering, and deleting happens locally inside your browser. If you opt-in to "Deep Compress", your file is securely transmitted to our backend, processed in-memory, and <strong>instantly deleted</strong> the milisecond the download completes.
+        Merging, reordering, and deleting happens locally inside your browser. If you opt-in to "Deep Compress", your file is securely transmitted to our backend processor. To ensure zero footprint, our backend operates on an isolated RAM-disk (tmpfs) — your PDF is processed purely in volatile memory and is <strong>instantly obliterated</strong> the millisecond the compression completes. Nothing touches a hard drive.
       </p>
     </div>
 
@@ -42,7 +42,7 @@ import Layout from '../layouts/Layout.astro';
       <li><strong><a href="https://astro.build/" target="_blank" rel="noopener noreferrer">Astro</a> & <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">React</a></strong> — For the lightning-fast user interface.</li>
       <li><strong><a href="https://github.com/documenso/libpdf" target="_blank" rel="noopener noreferrer">@libpdf/core</a></strong> — A modern, typescript-friendly engine for fast PDF modifications.</li>
       <li><strong><a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="noopener noreferrer">PDF.js</a></strong> — Mozilla's foundational library that accurately renders PDF page thumbnails.</li>
-      <li><strong><a href="https://pdfcpu.io/" target="_blank" rel="noopener noreferrer">pdfcpu</a></strong> — (Coming soon via WebAssembly) The robust powerhouse used for deep PDF compression.</li>
+      <li><strong><a href="https://www.ghostscript.com/" target="_blank" rel="noopener noreferrer">Ghostscript</a> & Go</strong> — The powerhouse used for remote "Deep Compress" image reduction and optimization.</li>
     </ul>
     
     <div class="mt-12 text-center">
