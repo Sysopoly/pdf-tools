@@ -369,6 +369,11 @@ export function PdfWorkspace() {
                   <option value="/screen">High (Screen Quality)</option>
                   <option value="/ebook">Medium (Ebook Quality)</option>
                   <option value="/printer">Low (Print Quality)</option>
+              </select>
+            )}
+            <label className="flex items-center justify-center gap-2 cursor-pointer group" title="Uses our secure backend to heavily compress images. File is immediately deleted after processing.">
+              <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
+                Optimize
               </span>
               <div className="relative inline-flex items-center cursor-pointer">
                 <input 
