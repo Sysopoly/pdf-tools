@@ -2,7 +2,7 @@ name: Build and Publish Docker Images
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   workflow_dispatch:
 
 env:
@@ -71,4 +71,3 @@ jobs:
         with:
           push-token: ${{ secrets.KUMA_PUSH_TOKEN }}
           msg: "Build OK"
-
