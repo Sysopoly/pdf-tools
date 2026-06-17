@@ -365,7 +365,7 @@ export function PdfWorkspace() {
                 onChange={(e) => setCompressionLevel(e.target.value)}
                 className="text-sm bg-gray-50 border border-gray-200 text-gray-700 rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
               >
-                  <option value="/extreme">Maximum (Extreme, Slower)</option>
+                  <option value="/rasterize">Flatten to Images (Best for Scans/Bleed)</option><option value="/extreme">Maximum (Extreme, Slower)</option>
                   <option value="/screen">High (Screen Quality)</option>
                   <option value="/ebook">Medium (Ebook Quality)</option>
                   <option value="/printer">Low (Print Quality)</option>

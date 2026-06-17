@@ -97,9 +97,17 @@ func main() {
 				c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to compress file during Extreme optimization."})
 				return
 			}
-		} else {
-			validLevels := map[string]bool{
-				"/screen":   true,
+		} else if compressionLevel == "/rasterize" {
+                        log.Println("Attempting Rasterize optimization via Ghostscript + GoFPDF...")
+                        err = flattenToImages(inPath, outPath)
+                        if err != nil {
+                                log.Printf("Rasterization failed: %v", err)
+                                c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to flatten file."})
+                                return
+                        }
+                } else {
+                        validLevels := map[string]bool{
+                                "/screen":   true,
 				"/ebook":    true,
 				"/printer":  true,
 				"/prepress": true,
