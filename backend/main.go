@@ -80,9 +80,10 @@ cmd := exec.Command(
 "-dAutoFilterGrayImages=false",
 "-dColorImageFilter=/DCTEncode",
 "-dGrayImageFilter=/DCTEncode",
-"-c", ".setpdfwrite << /ColorImageDict << /QFactor 0.15 /Blend 1 >> >> setdistillerparams",
 fmt.Sprintf("-sOutputFile=%s", outPath),
-inPath,
+		"-c", ".setpdfwrite << /ColorImageDict << /QFactor 0.15 /Blend 1 >> >> setdistillerparams",
+		"-f",
+		inPath,
 )
 output, err := cmd.CombinedOutput()
 if err != nil {
