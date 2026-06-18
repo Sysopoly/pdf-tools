@@ -2,11 +2,23 @@ package main
 
 import (
 "fmt"
+        "os"
 "os/exec"
 )
 
 func flattenToImages(inPath, outPath string) error {
-cmd := exec.Command(
+        psOut := inPath + ".ps"
+
+        // 1. Convert to PS to strip objects / flush geometry boundaries cleanly.
+cmd1 := exec.Command("gs", "-q", "-dNOPAUSE", "-dBATCH", "-sDEVICE=ps2write", fmt.Sprintf("-sOutputFile=%s", psOut), inPath)
+out, err := cmd1.CombinedOutput()
+        if err != nil {
+            return fmt.Errorf("ghostscript ps2write error: %v, out: %s", err, string(out))
+        }
+        defer os.Remove(psOut)
+
+        // 2. Conver back to PDF with resizing and max compression.
+cmd2 := exec.Command(
 "gs",
 "-sDEVICE=pdfwrite",
 "-dCompatibilityLevel=1.4",
@@ -19,18 +31,17 @@ cmd := exec.Command(
 "-dColorImageFilter=/DCTEncode",
 "-dGrayImageFilter=/DCTEncode",
 "-dPDFFitPage",
-"-dFIXEDMEDIA",
+                "-dFIXEDMEDIA",
 "-sPAPERSIZE=a4",
 "-dNOPAUSE", "-dQUIET", "-dBATCH",
 fmt.Sprintf("-sOutputFile=%s", outPath),
 "-c", "<< /ColorImageDict << /QFactor 0.15 /Blend 1 >> >> setdistillerparams",
-"-f",
-inPath,
+"-f", psOut,
 )
 
-output, err := cmd.CombinedOutput()
+out, err = cmd2.CombinedOutput()
 if err != nil {
-return fmt.Errorf("ghostscript fit-to-page error: %v, out: %s", err, string(output))
+return fmt.Errorf("ghostscript pdfwrite error: %v, out: %s", err, string(out))
 }
 return nil
 }
